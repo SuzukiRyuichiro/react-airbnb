@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 
 class Flat extends Component {
   constructor (props) {
-    super(props)
+    super(props);
+
+    const { flat } = this.props;
 
     this.state = {
-      name: this.props.flat.name,
-      imageUrl: this.props.flat.imageUrl,
-      price: this.props.flat.price,
-      priceCurrency: this.props.flat.priceCurrency,
-      lat: this.props.flat.lat,
-      lng: this.props.flat.lng
+      name: flat.name,
+      imageUrl: flat.imageUrl,
+      price: flat.price,
+      priceCurrency: flat.priceCurrency,
+      lat: flat.lat,
+      lng: flat.lng
     }
   }
 
