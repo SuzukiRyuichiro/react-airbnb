@@ -3,6 +3,14 @@ import FlatList from './flat-list.jsx';
 import Map from './map.jsx';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedFlatLng: 0,
+      selectedFlatLat: 0
+    }
+  }
 
   render () {
     return (
@@ -11,7 +19,7 @@ class App extends Component {
           <FlatList />
         </div>
         <div className="right-scene">
-          <Map />
+          <Map lng={this.state.selectedFlatLng} lat={this.state.selectedFlatLat} />
         </div>
       </div>
     );
