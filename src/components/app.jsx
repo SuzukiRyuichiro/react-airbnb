@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FlatList from './flat-list.jsx';
+import Map from './map.jsx';
 
 class App extends Component {
 
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <div>
         <FlatList />
+        <Map />
       </div>
     );
   }

@@ -7,7 +7,7 @@ class FlatList extends Component {
   render() {
     return (
       <div>
-        {flats.map( flat => <Flat flat={flat} key={flat.name}/> )}
+        { flats.map( flat => <Flat flat={flat} key={flat.name}/> ) }
       </div>
     );
   }
