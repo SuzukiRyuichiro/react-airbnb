@@ -7,8 +7,12 @@ class App extends Component {
   render () {
     return (
       <div>
-        <FlatList />
-        <Map />
+        <div className="left-scene">
+          <FlatList />
+        </div>
+        <div className="right-scene">
+          <Map />
+        </div>
       </div>
     );
   }

@@ -35,6 +35,10 @@ class Map extends React.Component {
         zoom: map.getZoom().toFixed(2)
       });
     });
+
+    const marker = new mapboxgl.Marker()
+      .setLngLat([this.state.lng, this.state.lat])
+      .addTo(map);
   }
 
   render() {

@@ -1,12 +1,24 @@
 @import "cards";
 
+.left-scene {
+  flex: 0 0 40%;
+  display: flex;
+  background-color: #ecf0f1;
+  flex-direction: column;
+  overflow: scroll;
+}
+.right-scene {
+  flex: 0 0 60%;
+  position: sticky;
+}
+
 
 .map-container {
   position: absolute;
   top: 0;
   right: 0;
-  left: 0;
   bottom: 0;
+  left: 0;
 }
 
 .sidebar {
@@ -17,7 +29,7 @@
   z-index: 1;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   margin: 12px;
   border-radius: 4px;
 }
@@ -33,13 +45,12 @@ body {
 }
 
 #root > div {
-  margin-top: 20px;
   display: flex;
 }
 
 .flat-list {
   padding-left: 10px;
-  width: 60%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
