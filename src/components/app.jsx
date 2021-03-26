@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import FlatList from './flat-list.jsx';
-import Map from './map.jsx';
+import FlatList from './flat-list';
+import Map from './map';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedFlatLng: 0,
-      selectedFlatLat: 0
-    }
+      selectedFlatLng: 2.34689,
+      selectedFlatLat: 48.884211
+    };
+  }
+
+  selectFlat = (selectedFlatLng, selectedFlatLat) => {
+    this.setState({
+      selectedFlatLng: selectedFlatLng,
+      selectedFlatLat: selectedFlatLat
+    });
   }
 
   render () {
+    const { selectedFlatLat, selectedFlatLng } = this.state;
     return (
       <div>
         <div className="left-scene">
-          <FlatList />
+          <FlatList selectFlat={this.selectFlat} />
         </div>
         <div className="right-scene">
-          <Map lng={this.state.selectedFlatLng} lat={this.state.selectedFlatLat} />
+          <Map selectedFlatLng={selectedFlatLng} selectedFlatLat={selectedFlatLat} />
         </div>
       </div>
     );

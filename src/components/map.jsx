@@ -10,47 +10,60 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2Nvb3Rlci1zY29vdGVyIiwiYSI6ImNra3J2Z2ozZTBmN
 class Map extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-    lng: this.props.lng,
-    lat: this.props.lat,
-    zoom: 9
+      selectedFlatLng: this.props.selectedFlatLng,
+      selectedFlatLat: this.props.selectedFlatLat,
+      zoom: 9
     };
     this.mapContainer = React.createRef();
   }
 
   componentDidMount() {
-    const { lng, lat, zoom } = this.state;
+    const { selectedFlatLng, selectedFlatLat, zoom } = this.state;
+    // makes the intial map
     const map = new mapboxgl.Map({
     container: this.mapContainer.current,
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [lng, lat],
+    center: [selectedFlatLng, selectedFlatLat],
     zoom: zoom
     });
+  }
 
-    map.on('move', () => {
-      this.setState({
-        lng: map.getCenter().lng.toFixed(4),
-        lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
-      });
+  // this is just after initialization. won't be called when state or props change.
+
+  addMarker = (lng, lat) => {
+    const map = new mapboxgl.Map({
+      container: this.mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [lng, lat],
+      zoom: 13
     });
-
     const marker = new mapboxgl.Marker()
-      .setLngLat([this.state.lng, this.state.lat])
-      .addTo(map);
+    .setLngLat([lng, lat])
+    .addTo(map);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      selectedFlatLng: nextProps.selectedFlatLng,
+      selectedFlatLat: nextProps.selectedFlatLat
+    });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextState.selectedFlatLat && nextState.selectedFlatLng)
+   }
+
+  componentWillUpdate (nextProps, nextState) {
+    this.addMarker(nextState.selectedFlatLng, nextState.selectedFlatLat);
   }
 
   render() {
-   const { lng, lat, zoom } = this.state;
-   return (
+    return (
      <div>
-       <div className="sidebar">
-         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-       </div>
        <div ref={this.mapContainer} className="map-container" />
      </div>
-   );
+    );
   }
 }
 
