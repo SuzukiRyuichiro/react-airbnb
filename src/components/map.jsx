@@ -38,6 +38,12 @@ class Map extends React.Component {
       center: [lng, lat],
       zoom: 13
     });
+    map.jumpTo({
+      center: [lng, lat],
+      zoom: 13,
+      pitch: 45,
+      bearing: 90
+    })
     const marker = new mapboxgl.Marker()
     .setLngLat([lng, lat])
     .addTo(map);
