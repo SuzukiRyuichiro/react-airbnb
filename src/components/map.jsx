@@ -16,37 +16,36 @@ class Map extends React.Component {
       zoom: 9
     };
     this.mapContainer = React.createRef();
+    this.map; // mapbox map object
+    this.marker; // mapbox map object
   }
 
   componentDidMount() {
     const { selectedFlatLng, selectedFlatLat, zoom } = this.state;
     // makes the intial map
-    const map = new mapboxgl.Map({
+    this.map = new mapboxgl.Map({
     container: this.mapContainer.current,
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [selectedFlatLng, selectedFlatLat],
     zoom: zoom
     });
+    this.map.dragRotate.disable();
   }
 
   // this is just after initialization. won't be called when state or props change.
 
   addMarker = (lng, lat) => {
-    const map = new mapboxgl.Map({
-      container: this.mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [lng, lat],
-      zoom: 13
-    });
-    map.jumpTo({
+    this.map.jumpTo({
       center: [lng, lat],
       zoom: 13,
-      pitch: 45,
-      bearing: 90
     })
-    const marker = new mapboxgl.Marker()
-    .setLngLat([lng, lat])
-    .addTo(map);
+    if(!this.marker){
+      this.marker = new mapboxgl.Marker()
+      .setLngLat([lng, lat])
+      .addTo(this.map);
+    } else {
+      this.marker.remove;
+    }
   }
 
   componentWillReceiveProps(nextProps) {
