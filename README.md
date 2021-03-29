@@ -1,15 +1,11 @@
-# react-boilerplate
+# React airbnb
 
-Simple react starter with the following config:
+A simple app to learn React
+If you click on one of the listing, it will jump to location of that flat
 
-- React, ReactDOM
-- Webpack 4
-- Babel with es2015 and react presets
-- Bootstrap (css only, loaded from a cdn in `index.html`)
-- work with `.js` or `.jsx` files
-- main `application.scss` stylesheet is imported in `index.js` as a module to enjoy hot reloading
+This app uses mapbox gl js
 
-## Scripts
+## How to run after cloning
 
 To start the local Webpack Dev Server (usually on port `8080`):
 
@@ -17,14 +13,9 @@ To start the local Webpack Dev Server (usually on port `8080`):
 yarn start
 ```
 
-To lint all JavaScript files in the `src` folder:
-
+dont forget to
 ```bash
-yarn lint
+yarn install
 ```
 
-To build and deploy your app to `gh-pages` branch on the GitHub repo:
-
-```bash
-yarn deploy
-```
+first

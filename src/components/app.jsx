@@ -22,7 +22,7 @@ class App extends Component {
   render () {
     const { selectedFlatLat, selectedFlatLng } = this.state;
     return (
-      <div>
+      <div className="container-fluid">
         <div className="left-scene">
           <FlatList selectFlat={this.selectFlat} />
         </div>
