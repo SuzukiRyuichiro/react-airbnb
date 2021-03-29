@@ -1,6 +1,6 @@
 # React airbnb
 
-![screenshot]('screenshots/1.jpg')
+![screenshot](./screenshots/1.jpg)
 
 A simple app to learn React
 If you click on one of the listing, it will jump to location of that flat
