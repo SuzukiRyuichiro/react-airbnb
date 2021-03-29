@@ -20,6 +20,8 @@ class Map extends React.Component {
     this.marker; // mapbox map object
   }
 
+  // this is just after initialization. won't be called when state or props change.
+
   componentDidMount() {
     const { selectedFlatLng, selectedFlatLat, zoom } = this.state;
     // makes the intial map
@@ -32,20 +34,22 @@ class Map extends React.Component {
     this.map.dragRotate.disable();
   }
 
-  // this is just after initialization. won't be called when state or props change.
-
   addMarker = (lng, lat) => {
-    this.map.jumpTo({
-      center: [lng, lat],
-      zoom: 13,
-    })
     if(!this.marker){
       this.marker = new mapboxgl.Marker()
       .setLngLat([lng, lat])
       .addTo(this.map);
     } else {
-      this.marker.remove;
+      this.marker.remove();
+      this.marker = new mapboxgl.Marker()
+      .setLngLat([lng, lat])
+      .addTo(this.map);
     }
+    this.map.flyTo({
+      center: [lng, lat],
+      speed: 0.5,
+      zoom: 13,
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,6 +59,7 @@ class Map extends React.Component {
     });
   }
 
+// if the lng and lat are the same as the previous state, it will not change the state.
   shouldComponentUpdate(nextProps, nextState) {
     return (nextState.selectedFlatLat && nextState.selectedFlatLng)
    }
